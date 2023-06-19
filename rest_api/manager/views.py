@@ -60,12 +60,11 @@ class transactList(APIView):
     queryset=transact.objects.all()
     serializer_class = transactSerializer
 
-    def get(self,request):
+    def get(self, request):
         transacts = transact.objects.all()
         serializer = transactSerializer(transacts, many=True)
         return Response(serializer.data)
     
-class aa(APIView):
     def post(self, request):
         payer = request.data.get('payer')
         payee = request.data.get('payee')

@@ -57,10 +57,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
-
-    def __str__(this):
-        return this.transactid 
-       
+        
     def validate_unique(self, exclude=None):
         super().validate_unique(exclude=exclude)
         # if CustomUser.objects.filter(email=self.email).exists():
@@ -78,7 +75,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 class transactManager(models.Manager):
-    def create_transact(payer,payee,amount,transactid):
+    def create_transact(self,payer,payee,amount,transactid):
         if not CustomUser.objects.filter(username=payee).exists():
             raise ValueError("invalid payee")
         if not CustomUser.objects.filter(username=payer).exists():
@@ -91,14 +88,17 @@ class transactManager(models.Manager):
             raise ValueError("Transaction id already used")
         payee.balance+=amount
         payer.balance-=amount
-        transact= this.model()
+        transact= self.model()
         transact.payee=payee
         transact.payer=payer
         transact.amount=amount
-        transact.saveit(using=this._db)
+        transact.saveit(using=self._db)
         return transact
+    
+    def __str__(self):
+        return self.transactid
 
-class transact():
+class transact(models.Manager):
     payer=models.CharField(max_length=50)
     payee=models.CharField(max_length=50)
     amount=models.BigIntegerField()
@@ -108,4 +108,3 @@ class transact():
     
     def saveit(self, *args,**kwargs):
         super(transact,self).save(*args,**kwargs)
-

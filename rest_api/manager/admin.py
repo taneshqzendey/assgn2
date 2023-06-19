@@ -12,12 +12,3 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(CustomUser, CustomUserAdmin)
 
-"""class transactadmin(models.Manager):
-    list_display = ('payer', 'payee', 'amount','transactid')
-    search_fields = ('transactid')
-    readonly_fields = ()
-    list_filter = ()
-    fieldsets = ()
-
-admin.site.register(CustomUser, CustomUserAdmin)
-"""
